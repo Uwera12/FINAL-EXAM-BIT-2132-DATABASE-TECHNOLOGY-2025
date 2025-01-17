@@ -1,0 +1,245 @@
+PART A.
+Enter password:
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 9
+Server version: 8.3.0 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> CREATE DATABASE CLIENT;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> USE CLIENT;
+Database changed
+mysql> CREATE TABLE CLIENT_MASTER(ClientNO INT(10) PRIMARY KEY NOT NULL, Name varchar(20),Address varchar(20), city varchar(10), state varchar(15), bal_due int(10));
+Query OK, 0 rows affected, 2 warnings (0.04 sec)
+
+mysql> insert into CLIENT_MASTER VALUES(1111,'MANZI JOEL','KGL055','KIGALI CITY','RWANDA',4000);
+Query OK, 1 row affected, 1 warning (0.01 sec)
+
+mysql> insert into CLIENT_MASTER VALUES(1332,'THOMAS JOE','NY055','NEW YORK','USA',6000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into CLIENT_MASTER VALUES(1342,'KAMIKAZI WINNY','MZ0584','MUSANZE','RWANDA',5000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into CLIENT_MASTER VALUES(1333,'KAMIKAZI WINNY','KGL0234','KIGALI CITY','RWANDA',5500);
+Query OK, 1 row affected, 1 warning (0.00 sec)
+
+mysql> insert into CLIENT_MASTER VALUES(1356,'KIMENYI TONNY','HUYE154','HUYE CITY','RWANDA',7500);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT*FROM CLIENT_MASTER;
++----------+----------------+---------+------------+--------+---------+
+| ClientNO | Name           | Address | city       | state  | bal_due |
++----------+----------------+---------+------------+--------+---------+
+|     1111 | MANZI JOEL     | KGL055  | KIGALI CIT | RWANDA |    4000 |
+|     1332 | THOMAS JOE     | NY055   | NEW YORK   | USA    |    6000 |
+|     1342 | KAMIKAZI WINNY | MZ0584  | MUSANZE    | RWANDA |    5000 |
+|     1333 | KAMIKAZI WINNY | KGL0234 | KIGALI CIT | RWANDA |    5500 |
+|     1356 | KIMENYI TONNY  | HUYE154 | HUYE CITY  | RWANDA |    7500 |
++----------+----------------+---------+------------+--------+---------+
+5 rows in set (0.01 sec)
+
+mysql> SELECT NAME FROM CLIENT_MASTER WHERE bal_due>5000;
++----------------+
+| NAME           |
++----------------+
+| THOMAS JOE     |
+| KAMIKAZI WINNY |
+| KIMENYI TONNY  |
++----------------+
+3 rows in set (0.01 sec)
+
+mysql> alter table client_master modify client_master varchar(10);
+ERROR 1054 (42S22): Unknown column 'client_master' in 'client_master'
+mysql> alter table client_master modify ClientNO varchar(10);
+Query OK, 5 rows affected (0.05 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> insert into CLIENT_MASTER VALUES('C123','UWERA ANNET','HUYE157','HUYE CITY','RWANDA',7500);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT*FROM CLIENT_MASTER;
++----------+----------------+---------+------------+--------+---------+
+| ClientNO | Name           | Address | city       | state  | bal_due |
++----------+----------------+---------+------------+--------+---------+
+| 1111     | MANZI JOEL     | KGL055  | KIGALI CIT | RWANDA |    4000 |
+| 1332     | THOMAS JOE     | NY055   | NEW YORK   | USA    |    6000 |
+| 1342     | KAMIKAZI WINNY | MZ0584  | MUSANZE    | RWANDA |    5000 |
+| 1333     | KAMIKAZI WINNY | KGL0234 | KIGALI CIT | RWANDA |    5500 |
+| 1356     | KIMENYI TONNY  | HUYE154 | HUYE CITY  | RWANDA |    7500 |
+| C123     | UWERA ANNET    | HUYE157 | HUYE CITY  | RWANDA |    7500 |
++----------+----------------+---------+------------+--------+---------+
+6 rows in set (0.00 sec)
+
+mysql> alter table client_master modify bal_due varchar(10);
+Query OK, 6 rows affected (0.03 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> update client_master set bal_due='Rs. 5100' where clientNO='C123';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT*FROM CLIENT_MASTER;
++----------+----------------+---------+------------+--------+----------+
+| ClientNO | Name           | Address | city       | state  | bal_due  |
++----------+----------------+---------+------------+--------+----------+
+| 1111     | MANZI JOEL     | KGL055  | KIGALI CIT | RWANDA | 4000     |
+| 1332     | THOMAS JOE     | NY055   | NEW YORK   | USA    | 6000     |
+| 1342     | KAMIKAZI WINNY | MZ0584  | MUSANZE    | RWANDA | 5000     |
+| 1333     | KAMIKAZI WINNY | KGL0234 | KIGALI CIT | RWANDA | 5500     |
+| 1356     | KIMENYI TONNY  | HUYE154 | HUYE CITY  | RWANDA | 7500     |
+| C123     | UWERA ANNET    | HUYE157 | HUYE CITY  | RWANDA | Rs. 5100 |
++----------+----------------+---------+------------+--------+----------+
+6 rows in set (0.00 sec)
+
+mysql> select bal_due from client_master as BALANCE;
++----------+
+| bal_due  |
++----------+
+| 4000     |
+| 6000     |
+| 5000     |
+| 5500     |
+| 7500     |
+| Rs. 5100 |
++----------+
+6 rows in set (0.00 sec)
+
+mysql> select bal_due from client_master SET as BALANCE;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SET as BALANCE' at line 1
+mysql> Alter table client_master set bal_due as 'BALANCE';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'set bal_due as 'BALANCE'' at line 1
+mysql> Alter table client_master set bal_due as BALANCE;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'set bal_due as BALANCE' at line 1
+mysql> Alter table client_master DISPLAY bal_due as BALANCE;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'DISPLAY bal_due as BALANCE' at line 1
+mysql> SELECT bal_due from client_master AS BALANCE;
++----------+
+| bal_due  |
++----------+
+| 4000     |
+| 6000     |
+| 5000     |
+| 5500     | 		
+| 7500     |
+| Rs. 5100 |
++----------+
+6 rows in set (0.00 sec)
+
+mysql> RENAME CLIENT_MASTER TO CLIENT12;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'CLIENT_MASTER TO CLIENT12' at line 1
+mysql> RENAME TABLE CLIENT_MASTER TO CLIENT12;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> SELECT*FROM CLIENT12;
++----------+----------------+---------+------------+--------+----------+
+| ClientNO | Name           | Address | city       | state  | bal_due  |
++----------+----------------+---------+------------+--------+----------+
+| 1111     | MANZI JOEL     | KGL055  | KIGALI CIT | RWANDA | 4000     |
+| 1332     | THOMAS JOE     | NY055   | NEW YORK   | USA    | 6000     |
+| 1342     | KAMIKAZI WINNY | MZ0584  | MUSANZE    | RWANDA | 5000     |
+| 1333     | KAMIKAZI WINNY | KGL0234 | KIGALI CIT | RWANDA | 5500     |
+| 1356     | KIMENYI TONNY  | HUYE154 | HUYE CITY  | RWANDA | 7500     |
+| C123     | UWERA ANNET    | HUYE157 | HUYE CITY  | RWANDA | Rs. 5100 |
++----------+----------------+---------+------------+--------+----------+
+6 rows in set (0.01 sec)
+
+PART B Q6.
+
+mysql> CREATE TABLE departments(dep_id int PRIMARY KEY,dep_name varchar(250),dep_no_employees int);CREATE TABLE employees(emp_id int primary key,emp_name varchar(250),emp_salary int,department_id int,FOREIGN KEY(department_id) REFERENCES departments(dep_id));
+Query OK, 0 rows affected (0.02 sec)
+
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> insert INTO departments VALUES(100,"IT",50);insert INTO departments VALUES(200,"data science",80);insert INTO departments VALUES(300,"Software engineering",10);insert INTO departments VALUES(400,"cloud computing",40);insert INTO departments VALUES(500,"HRM",10);
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+mysql>    INSERT INTO employees VALUES(101,"MUSABIKA Fidele",900000,300);INSERT INTO employees VALUES(102,"Rudasingwa Allan",700000,200);INSERT INTO employees VALUES(103,"MUUGISHA Yves",400000,400);INSERT INTO employees VALUES(104,"MUGISHA Eumenne",600000,100);INSERT INTO employees VALUES(105,"Hirwa Narada",1000000,500);
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+mysql>  DESC employees;
++---------------+--------------+------+-----+---------+-------+
+| Field         | Type         | Null | Key | Default | Extra |
++---------------+--------------+------+-----+---------+-------+
+| emp_id        | int          | NO   | PRI | NULL    |       |
+| emp_name      | varchar(250) | YES  |     | NULL    |       |
+| emp_salary    | int          | YES  |     | NULL    |       |
+| department_id | int          | YES  | MUL | NULL    |       |
++---------------+--------------+------+-----+---------+-------+
+4 rows in set (0.02 sec)
+
+mysql> describe employees;
++---------------+--------------+------+-----+---------+-------+
+| Field         | Type         | Null | Key | Default | Extra |
++---------------+--------------+------+-----+---------+-------+
+| emp_id        | int          | NO   | PRI | NULL    |       |
+| emp_name      | varchar(250) | YES  |     | NULL    |       |
+| emp_salary    | int          | YES  |     | NULL    |       |
+| department_id | int          | YES  | MUL | NULL    |       |
++---------------+--------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql>  select employees.emp_name,departments.dep_name FROM employees left JOIN departments ON departments.dep_id = employees.emp_id
+    -> ;
++------------------+----------+
+| emp_name         | dep_name |
++------------------+----------+
+| MUSABIKA Fidele  | NULL     |
+| Rudasingwa Allan | NULL     |
+| MUUGISHA Yves    | NULL     |
+| MUGISHA Eumenne  | NULL     |
+| Hirwa Narada     | NULL     |
++------------------+----------+
+5 rows in set (0.00 sec)
+
+mysql> select employees.emp_name,departments.dep_name FROM employees RIGHT JOIN departments ON departments.dep_id = employees.emp_id;
++----------+----------------------+
+| emp_name | dep_name             |
++----------+----------------------+
+| NULL     | IT                   |
+| NULL     | data science         |
+| NULL     | Software engineering |
+| NULL     | cloud computing      |
+| NULL     | HRM                  |
++----------+----------------------+
+5 rows in set (0.00 sec)
+
+mysql>  SELECT *FROM employeesWHERE emp_salary > (SELECT AVG(emp_salary) FROM employees);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '> (SELECT AVG(emp_salary) FROM employees)' at line 1
+mysql> SELECT *FROM employeesWHERE emp_salary > (SELECT AVG(emp_salary) FROM employees);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '> (SELECT AVG(emp_salary) FROM employees)' at line 1
+mysql> select *
+    -> from employees
+    -> WHERE emp_salary > (SELECT
+    -> AVG(emp_salary) FROM employees);
++--------+-----------------+------------+---------------+
+| emp_id | emp_name        | emp_salary | department_id |
++--------+-----------------+------------+---------------+
+|    101 | MUSABIKA Fidele |     900000 |           300 |
+|    105 | Hirwa Narada    |    1000000 |           500 |
++--------+-----------------+------------+---------------+
+2 rows in set (0.01 sec)
