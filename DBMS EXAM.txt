@@ -1,16 +1,4 @@
 PART A.
-Enter password:
-Welcome to the MySQL monitor.  Commands end with ; or \g.
-Your MySQL connection id is 9
-Server version: 8.3.0 MySQL Community Server - GPL
-
-Copyright (c) 2000, 2024, Oracle and/or its affiliates.
-
-Oracle is a registered trademark of Oracle Corporation and/or its
-affiliates. Other names may be trademarks of their respective
-owners.
-
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 
 mysql> CREATE DATABASE CLIENT;
 Query OK, 1 row affected (0.02 sec)
@@ -243,3 +231,229 @@ mysql> select *
 |    105 | Hirwa Narada    |    1000000 |           500 |
 +--------+-----------------+------------+---------------+
 2 rows in set (0.01 sec)
+
+
+PART B Q7.
+
+mysql> CREATE TABLE STUDENT(studentID VARCHAR(5),FULLNAMES VARCHAR(25),GENDER VARCHAR(6),AGE INT(2),DEPARTMENT VARCHAR(30));
+Query OK, 0 rows affected, 1 warning (0.01 sec)
+
+mysql> insert into student values( 'BIT11','UWASE NINA','FEMALE',20,'BUSINESS INFORMATION TECH');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into student values( 'BIT12','KALISA AMOS','MALE',20,'BUSINESS INFORMATION TECH');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into student values( 'ACC12','GATETE JACK','MALE',22,'ACCOUNTING&FINANCE');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into student values( 'ACC13','GATESI ANAH','FEMALE',22,'ACCOUNTING&FINANCE');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into student values( 'ACC14','MWIZA TONAH','FEMALE',22,'ACCOUNTING&FINANCE');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT*FROM STUDENT;
++-----------+-------------+--------+------+---------------------------+
+| studentID | FULLNAMES   | GENDER | AGE  | DEPARTMENT                |
++-----------+-------------+--------+------+---------------------------+
+| BIT11     | UWASE NINA  | FEMALE |   20 | BUSINESS INFORMATION TECH |
+| BIT12     | KALISA AMOS | MALE   |   20 | BUSINESS INFORMATION TECH |
+| ACC12     | GATETE JACK | MALE   |   22 | ACCOUNTING&FINANCE        |
+| ACC13     | GATESI ANAH | FEMALE |   22 | ACCOUNTING&FINANCE        |
+| ACC14     | MWIZA TONAH | FEMALE |   22 | ACCOUNTING&FINANCE        |
++-----------+-------------+--------+------+---------------------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT*FROM STUDENT WHERE GENDER='FEMALE';
++-----------+-------------+--------+------+---------------------------+
+| studentID | FULLNAMES   | GENDER | AGE  | DEPARTMENT                |
++-----------+-------------+--------+------+---------------------------+
+| BIT11     | UWASE NINA  | FEMALE |   20 | BUSINESS INFORMATION TECH |
+| ACC13     | GATESI ANAH | FEMALE |   22 | ACCOUNTING&FINANCE        |
+| ACC14     | MWIZA TONAH | FEMALE |   22 | ACCOUNTING&FINANCE        |
++-----------+-------------+--------+------+---------------------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT*FROM STUDENT WHERE GENDER='MALE';
++-----------+-------------+--------+------+---------------------------+
+| studentID | FULLNAMES   | GENDER | AGE  | DEPARTMENT                |
++-----------+-------------+--------+------+---------------------------+
+| BIT12     | KALISA AMOS | MALE   |   20 | BUSINESS INFORMATION TECH |
+| ACC12     | GATETE JACK | MALE   |   22 | ACCOUNTING&FINANCE        |
++-----------+-------------+--------+------+---------------------------+
+2 rows in set (0.00 sec)
+
+mysql> DELETE FROM STUDENT WHERE AGE<20;
+Query OK, 0 rows affected (0.01 sec)
+
+
+PART C Q9.
+
+mysql> CREATE TABLE EMPLOYEEE(EMPLOYEE_ID INT(10),FIRST_NAME CHAR(20),LAST_NAME CHAR(10),EMAIL VARCHAR(30),PHONE_NUMBER INT(20),HIRE_DATE DATE,JOB_ID INT(23),SALARY INT(20),COMMISSION_PCT VARCHAR(10),MANAGER_ID INT(10), DEPARTMENT_ID INT(10));
+Query OK, 0 rows affected, 6 warnings (0.02 sec)
+
+mysql> INSERT INTO EMPLOYEE VALUES(1122,'UMWAMI','TITO','TITO123@GMAIL.COM',0789654532,2022-05-15,089,500000,'P123',100,50);
+ERROR 1146 (42S02): Table 'client.employee' doesn't exist
+mysql> INSERT INTO EMPLOYEEE VALUES(1122,'UMWAMI','TITO','TITO123@GMAIL.COM',0789654532,2022-05-15,089,500000,'P123',100,50);
+Query OK, 1 row affected, 1 warning (0.01 sec)
+
+mysql> SELECT*FROM EMPLOYEEE;
++-------------+------------+-----------+-------------------+--------------+------------+--------+--------+----------------+------------+---------------+
+| EMPLOYEE_ID | FIRST_NAME | LAST_NAME | EMAIL             | PHONE_NUMBER | HIRE_DATE  | JOB_ID | SALARY | COMMISSION_PCT | MANAGER_ID | DEPARTMENT_ID |
++-------------+------------+-----------+-------------------+--------------+------------+--------+--------+----------------+------------+---------------+
+|        1122 | UMWAMI     | TITO      | TITO123@GMAIL.COM |    789654532 | 0000-00-00 |     89 | 500000 | P123           |        100 |            50 |
++-------------+------------+-----------+-------------------+--------------+------------+--------+--------+----------------+------------+---------------+
+1 row in set (0.00 sec)
+
+mysql> INSERT INTO EMPLOYEEE VALUES(1123,'KAYUMBA','JAMES','JAMES123@GMAIL.COM',0781654532,2022.09.18,089,450000,'P124',100,50);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.18,089,450000,'P124',100,50)' at line 1
+mysql> INSERT INTO EMPLOYEEE VALUES(1123,'KAYUMBA','JAMES','JAMES123@GMAIL.COM',0781654532,2022-09-18,089,450000,'P124',100,50);
+Query OK, 1 row affected, 1 warning (0.00 sec)
+
+mysql> INSERT INTO EMPLOYEEE VALUES(1124,'KAYIRA','AMOS','AMOS123@GMAIL.COM',0781654572,2023-07-18,085,200000,'P126',101,60);
+Query OK, 1 row affected, 1 warning (0.00 sec)
+
+mysql> SELECT*FROM EMPLOYEEE;
++-------------+------------+-----------+--------------------+--------------+------------+--------+--------+----------------+------------+---------------+
+| EMPLOYEE_ID | FIRST_NAME | LAST_NAME | EMAIL              | PHONE_NUMBER | HIRE_DATE  | JOB_ID | SALARY | COMMISSION_PCT | MANAGER_ID | DEPARTMENT_ID |
++-------------+------------+-----------+--------------------+--------------+------------+--------+--------+----------------+------------+---------------+
+|        1122 | UMWAMI     | TITO      | TITO123@GMAIL.COM  |    789654532 | 0000-00-00 |     89 | 500000 | P123           |        100 |            50 |
+|        1123 | KAYUMBA    | JAMES     | JAMES123@GMAIL.COM |    781654532 | 0000-00-00 |     89 | 450000 | P124           |        100 |            50 |
+|        1124 | KAYIRA     | AMOS      | AMOS123@GMAIL.COM  |    781654572 | 0000-00-00 |     85 | 200000 | P126           |        101 |            60 |
++-------------+------------+-----------+--------------------+--------------+------------+--------+--------+----------------+------------+---------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT EMPLOYEE_ID,FIRST_NAME,LAST_NAME,SALARY FROM EMPLOYEEE;
++-------------+------------+-----------+--------+
+| EMPLOYEE_ID | FIRST_NAME | LAST_NAME | SALARY |
++-------------+------------+-----------+--------+
+|        1122 | UMWAMI     | TITO      | 500000 |
+|        1123 | KAYUMBA    | JAMES     | 450000 |
+|        1124 | KAYIRA     | AMOS      | 200000 |
++-------------+------------+-----------+--------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT EMPLOYEE_ID,FIRST_NAME,LAST_NAME,SALARY FROM EMPLOYEEE WHERE MANAGER_ID =100;
++-------------+------------+-----------+--------+
+| EMPLOYEE_ID | FIRST_NAME | LAST_NAME | SALARY |
++-------------+------------+-----------+--------+
+|        1122 | UMWAMI     | TITO      | 500000 |
+|        1123 | KAYUMBA    | JAMES     | 450000 |
++-------------+------------+-----------+--------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT FIRST_NAME,LAST_NAME FROM EMPLOYEEE WHERE SALARY>= 4800;
++------------+-----------+
+| FIRST_NAME | LAST_NAME |
++------------+-----------+
+| UMWAMI     | TITO      |
+| KAYUMBA    | JAMES     |
+| KAYIRA     | AMOS      |
++------------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT*FROM EMPLOYEEE WHERE SALARY>= 4800;
++-------------+------------+-----------+--------------------+--------------+------------+--------+--------+----------------+------------+---------------+
+| EMPLOYEE_ID | FIRST_NAME | LAST_NAME | EMAIL              | PHONE_NUMBER | HIRE_DATE  | JOB_ID | SALARY | COMMISSION_PCT | MANAGER_ID | DEPARTMENT_ID |
++-------------+------------+-----------+--------------------+--------------+------------+--------+--------+----------------+------------+---------------+
+|        1122 | UMWAMI     | TITO      | TITO123@GMAIL.COM  |    789654532 | 0000-00-00 |     89 | 500000 | P123           |        100 |            50 |
+|        1123 | KAYUMBA    | JAMES     | JAMES123@GMAIL.COM |    781654532 | 0000-00-00 |     89 | 450000 | P124           |        100 |            50 |
+|        1124 | KAYIRA     | AMOS      | AMOS123@GMAIL.COM  |    781654572 | 0000-00-00 |     85 | 200000 | P126           |        101 |            60 |
++-------------+------------+-----------+--------------------+--------------+------------+--------+--------+----------------+------------+---------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT*FROM EMPLOYEEE WHERE LAST_NAME='AUSTIN';
+Empty set (0.00 sec)
+
+mysql> SELECT FIRST_NAME,LAST_NAME FROM EMPLOYEEE WHERE DEPARTMENT_ID= 60,70 AND 80;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',70 AND 80' at line 1
+mysql> SELECT FIRST_NAME,LAST_NAME FROM EMPLOYEEE WHERE DEPARTMENT_ID= (60,70 AND 80);
+ERROR 1241 (21000): Operand should contain 1 column(s)
+mysql> SELECT FIRST_NAME,LAST_NAME FROM EMPLOYEEE WHERE DEPARTMENT_ID= (60 AND 70);
+Empty set (0.01 sec)
+
+mysql> SELECT FIRST_NAME,LAST_NAME FROM EMPLOYEEE WHERE DEPARTMENT_ID= 60;
++------------+-----------+
+| FIRST_NAME | LAST_NAME |
++------------+-----------+
+| KAYIRA     | AMOS      |
++------------+-----------+
+1 row in set (0.00 sec)
+
+mysql> SELECT FIRST_NAME,LAST_NAME FROM EMPLOYEEE WHERE DEPARTMENT_ID= 70;
+Empty set (0.00 sec)
+
+mysql> SELECT FIRST_NAME,LAST_NAME FROM EMPLOYEEE WHERE DEPARTMENT_ID= 80;
+Empty set (0.00 sec)
+
+
+
+PART C Q10.
+
+mysql> CREATE TABLE Sales (    SalesNo INT PRIMARY KEY,    SalesName VARCHAR(255),    Branch VARCHAR(255),    SalesAmount DECIMAL(10,2),    DOB DATE);
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> INSERT INTO Sales (SalesNo, SalesName, Branch, SalesAmount, DOB)VALUES(1, 'John Doe', 'New York', 5000.50, '1990-12-21'),(2, 'Alice Smith', 'Los Angeles', 7000.75, '1985-05-14'),(3, 'Bob Johnson', 'Chicago', 6200.60, '1992-12-10'),(4, 'Eve Adams', 'New York', 5400.30, '1988-07-23'),(5, 'Charlie Brown', 'Los Angeles', 8000.80, '1995-12-05');
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> SELECT*FROM Sales;
++---------+---------------+-------------+-------------+------------+
+| SalesNo | SalesName     | Branch      | SalesAmount | DOB        |
++---------+---------------+-------------+-------------+------------+
+|       1 | John Doe      | New York    |     5000.50 | 1990-12-21 |
+|       2 | Alice Smith   | Los Angeles |     7000.75 | 1985-05-14 |
+|       3 | Bob Johnson   | Chicago     |     6200.60 | 1992-12-10 |
+|       4 | Eve Adams     | New York    |     5400.30 | 1988-07-23 |
+|       5 | Charlie Brown | Los Angeles |     8000.80 | 1995-12-05 |
++---------+---------------+-------------+-------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT Branch, SUM(SalesAmount) AS TotalSalesFROM SalesGROUP BY Branch;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SalesGROUP BY Branch' at line 1
+mysql> SELECT Branch, SUM(SalesAmount) AS TotalSales FROM Sales GROUP BY Branch;
++-------------+------------+
+| Branch      | TotalSales |
++-------------+------------+
+| New York    |   10400.80 |
+| Los Angeles |   15001.55 |
+| Chicago     |    6200.60 |
++-------------+------------+
+3 rows in set (0.01 sec)
+
+mysql> SELECT Branch, AVG(SalesAmount) AS AverageSales FROM Sales GROUP BY Branch;
++-------------+--------------+
+| Branch      | AverageSales |
++-------------+--------------+
+| New York    |  5200.400000 |
+| Los Angeles |  7500.775000 |
+| Chicago     |  6200.600000 |
++-------------+--------------+
+3 rows in set (0.01 sec)
+
+mysql> SELECT SalesName, DATE_FORMAT(DOB, '%d-%b-%y') AS Formatted DOB FROM Sales WHERE MONTH(DOB) = 12;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'DOB FROM Sales WHERE MONTH(DOB) = 12' at line 1
+mysql> SELECT SalesName, DATE_FORMAT(DOB, '%d-%b-%y') AS FormattedDOB FROM Sales WHERE MONTH(DOB) = 12;
++---------------+--------------+
+| SalesName     | FormattedDOB |
++---------------+--------------+
+| John Doe      | 21-Dec-90    |
+| Bob Johnson   | 10-Dec-92    |
+| Charlie Brown | 05-Dec-95    |
++---------------+--------------+
+3 rows in set (0.01 sec)
+
+mysql> SELECT SalesName, DOB FROM Sales ORDER BY MONTH(DOB), DAY(DOB);
++---------------+------------+
+| SalesName     | DOB        |
++---------------+------------+
+| Alice Smith   | 1985-05-14 |
+| Eve Adams     | 1988-07-23 |
+| Charlie Brown | 1995-12-05 |
+| Bob Johnson   | 1992-12-10 |
+| John Doe      | 1990-12-21 |
++---------------+------------+
+5 rows in set (0.01 sec)
+
+END.
